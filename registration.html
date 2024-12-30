@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="registration.js"></script>
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-image: url('registration-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        nav .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        nav .navbar {
+            list-style: none;
+            display: flex;
+        }
+
+        nav .navbar li {
+            margin: 0 15px;
+        }
+
+        nav .navbar li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        nav .navbar li a:hover {
+            background-color: #555;
+        }
+
+        /* Registration Section */
+        .registration-section {
+            padding: 60px 20px;
+            margin-top: 80px;
+            background-color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 80px auto;
+            border-radius: 10px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.02);
+        }
+
+        .confirmation-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 1s ease-out;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav .navbar li {
+                margin: 10px 0;
+            }
+
+            .registration-section {
+                padding: 40px 10px;
+                margin-top: 60px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            select {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NavBar -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="event-details.html">Event Details</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Registration Form -->
+    <section id="registration" class="registration-section">
+        <h1>Register for an Event</h1>
+
+        <form id="registration-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="department">Select Department:</label>
+            <select id="department" name="department" required>
+                <option value="">--Please choose an option--</option>
+                <option value="mech">Mechanical Engineering</option>
+                <option value="civil">Civil Engineering</option>
+                <option value="chem">Chemical Engineering</option>
+                <option value="cse">Computer Science Engineering</option>
+                <option value="it">Information Technology</option>
+                <option value="csd">Computer Science Design</option>
+                <option value="eee">Electrical and Electronics Engineering</option>
+                <option value="ece">Electronics and Communication Engineering</option>
+                <option value="ft">Food Technology</option>
+            </select>
+
+            <label for="year">Select Year:</label>
+            <select id="year" name="year" required>
+                <option value="">--Please choose an option--</option>
+                <option value="I">I Year</option>
+                <option value="II">II Year</option>
+                <option value="III">III Year</option>
+                <option value="IV">IV Year</option>
+            </select>
+
+            <label for="class">Select Class:</label>
+            <select id="class" name="class" required>
+                <option value="">--Please choose an option--</option>
+                <option value="A">Class A</option>
+                <option value="B">Class B</option>
+                <option value="C">Class C</option>
+                <option value="D">Class D</option>
+            </select>
+
+            <label for="session">Select Event Session:</label>
+            <select id="session" name="session" required>
+                <option value="">--Please choose an option--</option>
+                <option value="session1">Session 1: Introduction to Technology</option>
+                <option value="session2">Session 2: Advanced Robotics</option>
+                <option value="session3">Session 3: Cybersecurity Essentials</option>
+                <option value="session4">Session 4: Blockchain Basics</option>
+                <option value="session5">Session 5: Startup Strategies</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="confirmation-message" class="confirmation-message">
+            <p>Thank you for registering! We have received your information and will get back to you shortly.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 ISTE-KEC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Hide the form and show the confirmation message
+            document.getElementById("registration-form").style.display = "none";
+            document.getElementById("confirmation-message").style.display = "block";
+        });
+    </script>
+</body>
+</html>

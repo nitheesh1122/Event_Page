@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - KEC-ISTE Perundurai</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-image: url('registration-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        nav .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        nav .navbar {
+            list-style: none;
+            display: flex;
+        }
+
+        nav .navbar li {
+            margin: 0 15px;
+        }
+
+        nav .navbar li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            text-align: center;
+        }
+
+        nav .navbar li a:hover {
+            background-color: #555;
+        }
+
+        .gallery-section {
+            padding: 60px 20px;
+            margin-top: 80px; /* To offset the fixed navbar */
+            background-color: rgba(255, 255, 255, 0.9);
+            max-width: 1200px;
+            margin: 80px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-info {
+            opacity: 1;
+        }
+
+        .gallery-item-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .gallery-item-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- NavBar -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="event-details.html">Event Details</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h1>Gallery</h1>
+        <div class="gallery">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item">
+                <img src="event1.jpeg" alt="Event 1">
+                <div class="gallery-item-info">
+                    <h3>Tech Fest 2024</h3>
+                    <p>Highlights from our annual Tech Fest featuring exciting workshops and sessions.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item">
+                <img src="workshop.jpeg" alt="Workshop">
+                <div class="gallery-item-info">
+                    <h3>Hands-on Workshop</h3>
+                    <p>Participants engaging in a hands-on workshop on emerging technologies.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item">
+                <img src="seminar.jpeg" alt="Seminar">
+                <div class="gallery-item-info">
+                    <h3>AI Seminar 2024</h3>
+                    <p>Snapshots from our AI Seminar with leading experts discussing the future of artificial intelligence.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item">
+                <img src="innovation.jpeg" alt="Innovation Awards">
+                <div class="gallery-item-info">
+                    <h3>Innovation Awards</h3>
+                    <p>Celebrating innovative student projects and recognizing outstanding achievements.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item">
+                <img src="seminar2.jpeg" alt="Seminar">
+                <div class="gallery-item-info">
+                    <h3>Machine Learning Seminar</h3>
+                    <p>Insights from our Machine Learning Seminar featuring interactive sessions and discussions.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item">
+                <img src="event2.jpeg" alt="Event">
+                <div class="gallery-item-info">
+                    <h3>Tech Expo 2024</h3>
+                    <p>Moments from the Tech Expo showcasing the latest advancements in technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 KEC-ISTE Perundurai. All rights reserved.</p>
+    </footer>
+</body>
+</html>

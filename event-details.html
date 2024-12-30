@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-image: url('registration-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        nav .logo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        nav .navbar {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav .navbar li {
+            margin: 0 20px;
+        }
+
+        nav .navbar li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        nav .navbar li a:hover {
+            background-color: #555;
+        }
+
+        .events-section {
+            padding: 60px;
+            margin-top: 70px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .event {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease-in-out, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event:hover {
+            transform: translateY(-5px);
+        }
+
+        .event.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event h2 {
+            color: #fff;
+        }
+
+        .event p {
+            margin: 10px 0;
+        }
+
+        .clock-time {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .learn-more-button, .register-button {
+            background-color: #ff7f50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transform: scale(1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .learn-more-button:hover, .register-button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .clock-time {
+                font-size: 1.2rem;
+            }
+
+            .events-section {
+                padding: 20px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #222;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            color: #fff;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ff7f50;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- NavBar -->
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="event-details.html">Events</a></li>
+            <li><a href="registration.html">Register</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Events Section -->
+    <div class="events-section">
+        <div class="event" id="event1" data-title="Event 1: Coding Workshop" data-speaker="John Doe" data-time="October 15, 2024 10:00 AM" data-venue="Room A" data-fees="$20">
+            <h2>Event 1: Coding Workshop</h2>
+            <p>Join us for an intensive coding workshop led by industry expert John Doe.</p>
+            <a href="#" class="learn-more-button">Learn More</a>
+            <a href="registration.html?event=Event%201:%20Coding%20Workshop" class="register-button">Register Now</a>
+        </div>
+
+        <div class="event" id="event2" data-title="Event 2: AI Summit" data-speaker="Jane Smith" data-time="November 20, 2024 12:00 PM" data-venue="Main Hall" data-fees="$30">
+            <h2>Event 2: AI Summit</h2>
+            <p>Explore the latest in AI technology with keynote speaker Jane Smith.</p>
+            <a href="#" class="learn-more-button">Learn More</a>
+            <a href="registration.html?event=Event%202:%20AI%20Summit" class="register-button">Register Now</a>
+        </div>
+
+        <div class="event" id="event3" data-title="Event 3: Web Development Bootcamp" data-speaker="Mark Lee" data-time="December 5, 2024 9:00 AM" data-venue="Lab 2" data-fees="$25">
+            <h2>Event 3: Web Development Bootcamp</h2>
+            <p>Learn modern web development techniques in this hands-on bootcamp led by Mark Lee.</p>
+            <a href="#" class="learn-more-button">Learn More</a>
+            <a href="registration.html?event=Event%203:%20Web%20Development%20Bootcamp" class="register-button">Register Now</a>
+        </div>
+
+        <div class="event" id="event4" data-title="Event 4: Machine Learning Seminar" data-speaker="Lisa Wong" data-time="January 10, 2025 11:00 AM" data-venue="Room B" data-fees="$35">
+            <h2>Event 4: Machine Learning Seminar</h2>
+            <p>Dive deep into machine learning concepts with speaker Lisa Wong.</p>
+            <a href="#" class="learn-more-button">Learn More</a>
+            <a href="registration.html?event=Event%204:%20Machine%20Learning%20Seminar" class="register-button">Register Now</a>
+        </div>
+
+        <div class="event" id="event5" data-title="Symposium" data-speaker="Various" data-time="February 15, 2025 9:00 AM" data-venue="Conference Center" data-fees="$50">
+            <h2>Symposium</h2>
+            <p>Attend various talks and panels at our annual symposium.</p>
+            <a href="#" class="learn-more-button">Learn More</a>
+            <a href="registration.html?event=Symposium" class="register-button">Register Now</a>
+        </div>
+    </div>
+
+    <!-- Modal for Event Details -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalSpeaker"></p>
+            <p id="modalTime"></p>
+            <p id="modalVenue"></p>
+            <p id="modalFees"></p>
+            <div id="modalTimer" class="clock-time"></div>
+            <a href="#" class="register-button">Register Now</a>
+        </div>
+    </div>
+
+<!-- JavaScript for Countdown Timers and Event Animations -->
+<script>
+    let activeIntervalId; // To track the currently active interval
+
+    function startCountdown(eventDate, timerId) {
+        const eventTime = new Date(eventDate).getTime();
+
+        // Clear any existing interval before starting a new one
+        if (activeIntervalId) {
+            clearInterval(activeIntervalId);
+        }
+
+        activeIntervalId = setInterval(function () {
+            const currentTime = new Date().getTime();
+            const distance = eventTime - currentTime;
+
+            if (distance <= 0) {
+                document.getElementById(timerId).innerHTML = "<span class='completed'>Event Completed</span>";
+                clearInterval(activeIntervalId);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById(timerId).innerHTML = `
+                <span class="days">${days < 10 ? '0' + days : days}</span>D :
+                <span class="hours">${hours < 10 ? '0' + hours : hours}</span>H :
+                <span class="minutes">${minutes < 10 ? '0' + minutes : minutes}</span>M :
+                <span class="seconds">${seconds < 10 ? '0' + seconds : seconds}</span>S
+            `;
+        }, 1000);
+
+        return activeIntervalId; // Return the interval ID for potential future use
+    }
+
+    function animateEvents() {
+        const events = document.querySelectorAll('.event');
+        events.forEach((event, index) => {
+            setTimeout(() => {
+                event.classList.add('show');
+            }, index * 300); // Staggered animation
+        });
+    }
+
+    function showModal(event) {
+        const title = event.getAttribute('data-title');
+        const speaker = event.getAttribute('data-speaker');
+        const time = event.getAttribute('data-time'); // This should be in a consistent format like '2024-10-15T10:00:00'
+        const venue = event.getAttribute('data-venue');
+        const fees = event.getAttribute('data-fees');
+
+        // Update modal content
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalSpeaker').textContent = `Speaker: ${speaker}`;
+        document.getElementById('modalTime').textContent = `Time: ${new Date(time).toLocaleString()}`; // Display in human-readable format
+        document.getElementById('modalVenue').textContent = `Venue: ${venue}`;
+        document.getElementById('modalFees').textContent = `Fees: ${fees}`;
+        document.getElementById('modalTimer').innerHTML = ""; // Clear previous timer
+
+        // Start countdown in the modal with the correct time format
+        startCountdown(time, 'modalTimer');
+        document.getElementById('eventModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('eventModal').style.display = "none";
+        // Clear the active interval when closing the modal
+        if (activeIntervalId) {
+            clearInterval(activeIntervalId);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const events = document.querySelectorAll('.event');
+        events.forEach(event => {
+            const learnMoreBtn = event.querySelector('.learn-more-button');
+            learnMoreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showModal(event); // Ensure only the clicked event's modal is shown
+            });
+        });
+
+        const closeModalBtn = document.querySelector('.close');
+        closeModalBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('eventModal')) {
+                closeModal();
+            }
+        });
+
+        // Initialize animations
+        animateEvents();
+    });
+</script>
+
+
+</body>
+</html>
